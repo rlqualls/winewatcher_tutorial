@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+# matte_controller
+require 'daemons'
+
+Daemons.run('matte_daemon.rb')

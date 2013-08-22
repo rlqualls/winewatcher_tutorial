@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# annoying_controller
+
+require 'daemons'
+
+Daemons.run('annoying_daemon.rb')

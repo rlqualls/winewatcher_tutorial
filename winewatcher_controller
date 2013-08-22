@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# winewatcher
+require 'daemons'
+require './winewatcher'
+
+Daemons.run('winewatcher_daemon.rb')

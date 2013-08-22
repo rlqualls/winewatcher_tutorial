@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    daemons (1.1.9)
+    daybreak (0.3.0)
+    ffi (1.9.0)
+    libnotify (0.8.1)
+      ffi (>= 1.0.11)
+    mini_portile (0.5.1)
+    moneta (0.7.19)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  daemons (~> 1.1.9)
+  daybreak (~> 0.3.0)
+  libnotify (~> 0.8.1)
+  moneta (~> 0.7.19)
+  nokogiri (~> 1.6.0)
