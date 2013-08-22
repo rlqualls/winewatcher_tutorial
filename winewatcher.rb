@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# winewatcher.rb
 require 'open-uri'
 require 'nokogiri'
 require 'libnotify'

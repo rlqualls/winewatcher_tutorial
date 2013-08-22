@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# winewatcher_daemon.rb
 
 APP_CHECK_INTERVAL = 7
 

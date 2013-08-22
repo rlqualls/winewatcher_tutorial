@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# winewatcher_controller
 require 'daemons'
 require './winewatcher'
 
