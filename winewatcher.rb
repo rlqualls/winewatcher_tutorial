@@ -10,6 +10,13 @@ module WineWatcher
   class TestResult
     attr_accessor :app_name, :distribution, :test_date, :wine_version, :rating
 
+    def hash_result
+      {
+        app_name: @app_name,
+        test_date: @test_date
+      }
+    end
+
     def to_s
       "App: #{@app_name}\nDistribution: #{@distribution}\nDate: #{@test_date}\n" + 
       "Wine Version: #{@wine_version}\nRating: #{@rating}\n"
@@ -37,14 +44,14 @@ module WineWatcher
                     :timeout => timeout)
     end
 
-    # Only add apps not already in the database
-    # Notify user the name of the app being watched
+    # Only add apps not already being watched
+    # Notify user the name of the app
     def add_app(app_id)
       if !@apps.include?(app_id)
         @apps << app_id
         if (!@results.key?(app_id))
           latest_result = get_latest_result(app_id)
-          @results[app_id] = hash_result(latest_result)
+          @results[app_id] = latest_result.hash_result
           sleep MIN_ACCESS_INTERVAL
         end
         notify("WineWatcher", 
@@ -54,7 +61,7 @@ module WineWatcher
     end
 
     # If the most recent date is newer than the one in the database,
-    # notify the user and update the date
+    # Notify the user and update the date
     def check_next_app
       app_id  = @apps[@app_index % @apps.size]
       latest_result = get_latest_result(app_id)
@@ -63,7 +70,7 @@ module WineWatcher
               latest_result.to_s,
               NOTIFY_RESULT_EXPIRATION)
         # wasteful to assign whole hash but assigning keys doesn't seem to work
-        @results[app_id] = hash_result(latest_result)
+        @results[app_id] = latest_result.hash_result
       end
       @app_index += 1
     end
@@ -84,12 +91,5 @@ module WineWatcher
       return result
     end 
 
-    # convert a test result into a hash
-    def hash_result(test_result)
-      {
-        app_name: test_result.app_name,
-        test_date: test_result.test_date
-      }
-    end
   end
 end

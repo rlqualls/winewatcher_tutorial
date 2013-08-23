@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 # This script will reset the database to notify that 2 apps have new
-# test results
+# test results by giving them some dates than are older than the ones
+# currently given in AppDB.
+
+# Note: in order for the test to work, the app id's must be the same as
+# some of the one's being watched in the daemon
 
 require 'date'
 require 'moneta'
