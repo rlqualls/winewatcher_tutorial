@@ -10,7 +10,7 @@ module WineWatcher
   class TestResult
     attr_accessor :app_name, :distribution, :test_date, :wine_version, :rating
 
-    def hash_result
+    def to_h
       {
         app_name: @app_name,
         test_date: @test_date
@@ -51,7 +51,7 @@ module WineWatcher
         @apps << app_id
         if (!@results.key?(app_id))
           latest_result = get_latest_result(app_id)
-          @results[app_id] = latest_result.hash_result
+          @results[app_id] = latest_result.to_h
           sleep MIN_ACCESS_INTERVAL
         end
         notify("WineWatcher", 
@@ -70,7 +70,7 @@ module WineWatcher
               latest_result.to_s,
               NOTIFY_RESULT_EXPIRATION)
         # wasteful to assign whole hash but assigning keys doesn't seem to work
-        @results[app_id] = latest_result.hash_result
+        @results[app_id] = latest_result.to_h
       end
       @app_index += 1
     end

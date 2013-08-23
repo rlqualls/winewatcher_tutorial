@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# The number of seconds between checking each app.
+# In actual use, this number should be much higher. There's no reason to hit
+# WineHQ more often than once every 10-60 minutes, as Test Results aren't
+# submitted that often.
 APP_CHECK_INTERVAL = 7
 
 # move to a folder where the database can be written
